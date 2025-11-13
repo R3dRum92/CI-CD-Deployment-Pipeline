@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HEALTH_URL="http://172.17.0.1:5000/health"
+HEALTH_URL="http://172.18.0.1:5000/health"
 MAX_RETRIES=10
 SLEEP_TIME=5
 RETRY_COUNT=0
