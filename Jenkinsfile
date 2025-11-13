@@ -37,6 +37,7 @@ pipeline {
             steps {
                 sh 'echo "Running mock unit tests..."'
                 sh '''
+                    pip install --no-cache-dir -r requirements.txt
                     # A true unit test would use a framework like pytest or unittest
                     TEST_RESULT=$(python -c "from app.app import add_two_numbers; print(add_two_numbers(5, 7))")
                     if [ "$TEST_RESULT" -ne "12" ]; then
