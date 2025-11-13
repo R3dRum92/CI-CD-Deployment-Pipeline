@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HEALTH_URL="http://$HOST_UP:5000/health"
+HEALTH_URL="http://$HOST_IP:5000/health"
 MAX_RETRIES=10
 SLEEP_TIME=5
 RETRY_COUNT=0
