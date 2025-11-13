@@ -79,8 +79,20 @@ pipeline {
                 script {
                     echo "Running health check script..."
 
-                    sh "chmod +x ./healthcheck.sh"
-                    sh "./healthcheck.sh"
+                    // 💡 Dynamically find the Docker bridge IP (Linux method)
+                    // We look for the IP of the 'docker0' bridge interface
+                    def hostIP = sh(
+                        script: "ip a show docker0 | grep -Po 'inet \\K[\\d.]+'",
+                        returnStdout: true
+                    ).trim()
+
+                    if (hostIP) {
+                        echo "Found Docker Bridge IP: ${hostIP}"
+                        // Pass the found IP as an environment variable to the script
+                        sh "HOST_IP=${hostIP} ./healthcheck.sh"
+                    } else {
+                        error "Could not determine Docker Bridge IP. Check 'docker0' interface."
+                    }
                 }
             }
         }
