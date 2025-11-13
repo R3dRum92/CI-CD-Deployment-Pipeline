@@ -19,9 +19,9 @@ repos:
         pass_filenames: false
 
       # b) Poetry Lock Hook (Ensures poetry.lock is up-to-date)
-      - id: poetry-lock-check
+      - id: poetry-lock
         name: 🔒 Check poetry.lock sync
-        entry: poetry lock --check
+        entry: poetry lock
         language: system
         files: ^pyproject\.toml$
         pass_filenames: false
